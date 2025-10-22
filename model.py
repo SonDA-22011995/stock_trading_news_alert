@@ -14,7 +14,7 @@ stock_articles = []
 def day_to_report(year, month, day):
     global days
     today = datetime(year, month, day)
-    days = [today - timedelta(days=i) for i in range(3)]
+    days = [today - timedelta(days=i) for i in range(1,3)]
 
 def get_stock_article_from_api(stock: dict):
     global stock_articles
@@ -72,16 +72,17 @@ def has_significant_price_change(stock, ratio):
         price = stock["prices"][day.strftime("%Y-%m-%d")]["4. close"] \
             if len(stock["prices"][day.strftime("%Y-%m-%d")]) > 0 else 0
         prices.append(price)
-    if (is_change_by_percent(value1=float(prices[1]), value2=float(prices[0]), ratio=ratio)
-            or is_change_by_percent(value1=float(prices[2]), value2=float(prices[0]), ratio=ratio)):
+    if is_change_by_percent(value1=float(prices[1]), value2=float(prices[0]), ratio=ratio):
         print(f"{stock["name"]} has change")
-
-        return max(change_by_percent(float(prices[1]),float(prices[0])), change_by_percent(float(prices[2]),float(prices[0])))
+        return change_by_percent(float(prices[1]),float(prices[0]))
     print(f"{stock["name"]} has not change much")
     return False
 
 def get_close_price(stock):
     return stock["prices"][days[0].strftime("%Y-%m-%d")]["4. close"]
+
+def is_up_trend(stock):
+    return stock["prices"][days[0].strftime("%Y-%m-%d")]["4. close"] >= stock["prices"][days[1].strftime("%Y-%m-%d")]["4. close"]
 
 
 

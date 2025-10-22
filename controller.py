@@ -2,13 +2,13 @@ import model
 from utils import load_html, send_email
 
 # Day to report
-model.day_to_report(year=2025, month=10, day=21)
+model.day_to_report(year=2025, month=10, day=18)
 # Official, user model.py to call api
-model.get_stock_data_from_api()
+# model.get_stock_data_from_api()
 # Temporary
 # Use a JSON file instead of calling the API
 # , because the API rate limit is 25 requests per day.
-# model.get_stock_data_from_json_file(file_path="./data/stock_interested_price_data.json")
+model.get_stock_data_from_json_file(file_path="./data/stock_interested_price_data.json")
 
 
 def get_stock_significant_price_change():
@@ -42,11 +42,12 @@ def send_email_notification():
         stock_item_list = ""
         stock_item = load_html(path="./data/notification.html")
         for stock in model.stock_significant_price_change:
+            change_symbol = "🔺" if model.is_up_trend(stock) else "🔻"
             stock_article = [article for article in model.stock_articles if article.get("code") == stock.get("code")]
             for article in stock_article[0]["articles"]:
                 stock_item_temp = stock_item
                 stock_item_temp = stock_item_temp.replace("{{ticker}}", stock.get("code"))
-                stock_item_temp = stock_item_temp.replace("{{change_symbol}}", "")
+                stock_item_temp = stock_item_temp.replace("{{change_symbol}}", change_symbol)
                 stock_item_temp = stock_item_temp.replace("{{change_percent}}", f"{round(stock.get("price_change")*100,2)}%")
                 stock_item_temp = stock_item_temp.replace("{{close_price}}", f"{model.get_close_price(stock)}")
                 stock_item_temp = stock_item_temp.replace("{{headline}}", f"{article["title"]}")
