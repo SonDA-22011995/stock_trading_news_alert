@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Alert — Daily Summary</title>
+  </head>
+  <body style="margin:0; padding:0; background-color:#f2f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;">
+    <!-- Container -->
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td align="center" style="padding:20px 10px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; background:#ffffff; border-radius:8px; overflow:hidden;">
+            <!-- Header -->
+            <tr>
+              <td style="padding:20px 24px; background:linear-gradient(90deg,#0f172a,#1f2937); color:#fff;">
+                <h1 style="margin:0; font-size:20px; font-weight:600;">Stock Movement — Cập nhật</h1>
+                <p style="margin:6px 0 0; font-size:13px; opacity:0.85;">Bản tin tổng hợp biến động cổ phiếu — <span style="font-weight:600;">{{date}}</span></p>
+              </td>
+            </tr>
+
+            <!-- Body Intro -->
+            <tr>
+              <td style="padding:16px 24px 0 24px;">
+                <p style="margin:0 0 12px; font-size:14px; color:#374151;">Xin chào <strong>{{recipient_name}}</strong>, dưới đây là các cổ phiếu đáng chú ý hôm nay.</p>
+              </td>
+            </tr>
+            {{stock_item}}
+            <tr>
+              <td style="padding:16px 24px 24px;">
+                <p style="margin:0 0 12px; font-size:13px; color:#6b7280;">Muốn nhận thông báo theo dõi danh mục tự động? <a href="{{manage_url}}">Quản lý đăng ký</a></p>
+                <p style="margin:0; font-size:12px; color:#9ca3af;">© {{year}} Your Company. <a href="{{unsubscribe_url}}">Unsubscribe</a></p>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

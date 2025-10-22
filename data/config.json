@@ -1,0 +1,26 @@
+{
+  "send_email": {
+    "port": "587",
+    "smtp_server": "smtp.gmail.com",
+    "user_name": "YOUR_GMAIL_ADDRESS",
+    "password": "YOUR_GMAIL_APP_PASSWORD",
+    "sender_email": "YOUR_GMAIL_ADDRESS"
+  },
+  "alpha_vantage": {
+    "endpoint": "https://www.alphavantage.co/query",
+    "para": {
+      "function": "TIME_SERIES_DAILY",
+      "symbol": "",
+      "outputsize": "compact",
+      "datatype": "json",
+      "apikey": "YOUR_API_KEY"
+    }
+  },
+  "news": {
+    "endpoint": "https://newsapi.org/v2/everything",
+    "para": {
+      "q": "",
+      "apiKey": "YOUR_API_KEY"
+    }
+  }
+}
